@@ -1,0 +1,277 @@
+/* Control Panel Styles */
+.control-panel {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    z-index: 1000;
+    max-width: 380px;
+    max-height: calc(100vh - 140px);
+    overflow-y: auto;
+}
+
+.control-section {
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.control-section:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.control-section h3 {
+    margin: 0 0 12px 0;
+    font-size: 16px;
+    color: #495057;
+    font-weight: 600;
+}
+
+.input-group {
+    margin-bottom: 12px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 4px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #495057;
+}
+
+.input-group input,
+.input-group select,
+.input-group textarea {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.input-group input:focus,
+.input-group select:focus,
+.input-group textarea:focus {
+    outline: none;
+    border-color: #80bdff;
+    box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+}
+
+.input-group textarea {
+    resize: vertical;
+    min-height: 60px;
+}
+
+/* Search Box */
+.search-box {
+    display: flex;
+    margin-bottom: 12px;
+}
+
+.search-box input {
+    flex: 1;
+    border-radius: 4px 0 0 4px;
+    border-right: none;
+}
+
+.search-box button {
+    background: #007bff;
+    color: white;
+    border: 1px solid #007bff;
+    padding: 8px 15px;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.search-box button:hover {
+    background: #0056b3;
+}
+
+/* File Upload Styling */
+.file-upload-wrapper {
+    position: relative;
+    margin-bottom: 12px;
+}
+
+.file-upload-input {
+    position: absolute;
+    left: -9999px;
+}
+
+.file-upload-label {
+    display: block;
+    padding: 8px 12px;
+    background: #f8f9fa;
+    border: 2px dashed #ced4da;
+    border-radius: 4px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.file-upload-label:hover {
+    background: #e9ecef;
+    border-color: #007bff;
+}
+
+.file-upload-label.has-file {
+    background: #d4edda;
+    border-color: #28a745;
+    color: #155724;
+}
+
+/* Info Display */
+.info-display {
+    background: #f8f9fa;
+    padding: 8px 12px;
+    border-radius: 4px;
+    margin-top: 8px;
+    font-size: 12px;
+    color: #495057;
+    border-left: 3px solid #007bff;
+}
+
+/* Hop List */
+.hop-list {
+    max-height: 200px;
+    overflow-y: auto;
+    border: 1px solid #e9ecef;
+    border-radius: 4px;
+    margin-top: 8px;
+}
+
+.list-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px;
+    border-bottom: 1px solid #e9ecef;
+    font-size: 13px;
+}
+
+.list-item:last-child {
+    border-bottom: none;
+}
+
+.list-item:hover {
+    background: #f8f9fa;
+}
+
+.list-item-content {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+}
+
+.list-item-image {
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+    border-radius: 4px;
+    border: 1px solid #dee2e6;
+}
+
+.list-item-text {
+    flex: 1;
+}
+
+.list-item-name {
+    font-weight: 500;
+    color: #495057;
+}
+
+.list-item-description {
+    font-size: 11px;
+    color: #6c757d;
+    margin-top: 2px;
+}
+
+/* Color Picker */
+.color-picker {
+    width: 50px;
+    height: 32px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    cursor: pointer;
+    background: none;
+    padding: 0;
+}
+
+/* Mode Indicator */
+.mode-indicator {
+    background: #ffc107;
+    color: #212529;
+    padding: 8px 12px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.connection-mode {
+    background: #17a2b8;
+    color: white;
+}
+
+/* Coordinates Display */
+.coordinates-display {
+    position: absolute;
+    bottom: 70px;
+    left: 10px;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 12px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Range Sliders */
+input[type="range"] {
+    width: calc(100% - 40px);
+    margin-right: 8px;
+}
+
+.range-display {
+    display: inline-block;
+    min-width: 30px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+/* Image Preview */
+.image-preview {
+    margin-top: 8px;
+    text-align: center;
+}
+
+.image-preview img {
+    max-width: 100%;
+    max-height: 100px;
+    border-radius: 4px;
+    border: 1px solid #dee2e6;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .control-panel {
+        position: relative;
+        top: 0;
+        right: 0;
+        max-width: none;
+        max-height: none;
+        margin: 10px;
+        order: -1;
+    }
+
+    #map {
+        height: 50vh;
+    }
+}

@@ -9,12 +9,18 @@ class Hop extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['type', 'name', 'description', 'latitude', 'longitude', 'icon'];
+    protected $fillable = ['type', 'name', 'description', 'latitude', 'longitude', 'icon', 'image_path', 'location_code'];
+
 
     protected $casts = [
         'latitude' => 'float',
         'longitude' => 'float',
     ];
+
+    public function location()
+    {
+        return $this->belongsTo(Location::class, 'location_code', 'code');
+    }
 
     public function connectionsFrom()
     {

@@ -13,11 +13,14 @@ Route::get('/', function () {
 // User routes with location
 Route::prefix('map/{locationCode}')->group(function () {
     Route::get('/', [UserMapController::class, 'index'])->name('map.user');
+});
+
+Route::middleware(['admin'])->prefix('map/{locationCode}')->group(function () {
     Route::get('/admin', [MapController::class, 'index'])->name('map.admin');
 });
 
 // Admin API routes with location
-Route::prefix('api/{locationCode}')->group(function () {
+Route::middleware(['admin'])->prefix('api/{locationCode}')->group(function () {
     Route::get('/map-data', [MapController::class, 'getMapData']);
     Route::post('/hops', [MapController::class, 'saveHop']);
     Route::post('/connections', [MapController::class, 'connectHops']);

@@ -42,9 +42,10 @@
                 </div>
                 <div id="markerPreview" class="image-preview" style="display:none;"></div>
             </div>
-            <button class="btn" onclick="startAddingMarker()">Add Marker</button>
-            <button class="btn btn-warning" onclick="startAddingHop()">Add Hop</button>
-            <button class="btn btn-danger" onclick="clearAllHops()">Clear All</button>
+            <button class="btn" onclick="startAddingMarker()">📍 Add Marker</button>
+            <button class="btn btn-warning" onclick="startAddingHop()">⚪ Add Hop</button>
+            <button class="btn btn-info" onclick="showAllMarkerDetails()">👁️ View All Details</button>
+            <button class="btn btn-danger" onclick="clearAllHops()">🗑️ Clear All</button>
             <div class="hop-list" id="hopList"></div>
         </div>
 

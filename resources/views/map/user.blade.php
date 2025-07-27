@@ -60,6 +60,27 @@
 
         <div class="divider"></div>
 
+        <!-- Marker Details Section -->
+        <div class="nav-section">
+            <h3>📋 Marker Information</h3>
+            <div class="dropdown-section">
+                <div class="dropdown-group">
+                    <label class="dropdown-label" for="detailsMarkerSelect">Select Marker:</label>
+                    <select id="detailsMarkerSelect" class="marker-dropdown">
+                        <option value="">-- Select Marker to View --</option>
+                    </select>
+                </div>
+                <button class="nav-button" onclick="showSelectedMarkerDetails()" id="showDetailsBtn" disabled>
+                    👁️ View Details
+                </button>
+                <button class="nav-button btn-info" onclick="showAllMarkersModal()">
+                    📋 Browse All Markers
+                </button>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
         <!-- Quick Actions -->
         <div class="nav-section">
             <button class="nav-button clear" onclick="clearNavigation()">

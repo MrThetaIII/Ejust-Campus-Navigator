@@ -180,6 +180,7 @@ function populateDropdowns() {
 
     if (!startSelect || !endSelect || !currentDestSelect) return;
 
+    // Clear existing options except the default
     startSelect.innerHTML = '<option value="">-- Select Start Location --</option>';
     endSelect.innerHTML = '<option value="">-- Select Destination --</option>';
     currentDestSelect.innerHTML = '<option value="">-- Select Destination --</option>';
@@ -188,10 +189,12 @@ function populateDropdowns() {
         detailsSelect.innerHTML = '<option value="">-- Select Marker to View --</option>';
     }
 
+    // Sort markers by name
     const sortedMarkers = Array.from(markers.values()).sort((a, b) =>
         a.markerData.name.localeCompare(b.markerData.name)
     );
 
+    // Add markers to dropdowns
     sortedMarkers.forEach(marker => {
         const option1 = new Option(marker.markerData.name, marker.markerData.id);
         const option2 = new Option(marker.markerData.name, marker.markerData.id);
@@ -717,11 +720,46 @@ function showSelectedMarkerDetails() {
     }
 }
 
+function showStatus(message, type = 'info') {
+    console.log(`Status (${type}):`, message);
+
+    let statusEl = document.getElementById('statusMessage');
+    if (!statusEl) {
+        statusEl = document.createElement('div');
+        statusEl.id = 'statusMessage';
+        statusEl.className = 'status-message';
+        document.body.appendChild(statusEl);
+    }
+
+    statusEl.className = `status-message ${type}`;
+    statusEl.textContent = message;
+    statusEl.style.display = 'block';
+
+    const delay = type === 'error' ? 7000 : 4000;
+    setTimeout(() => {
+        if (statusEl.style.display === 'block') {
+            statusEl.style.display = 'none';
+        }
+    }, delay);
+}
+
+function initializeUserMap(locationCode) {
+    initMap(locationCode);
+}
+
+function showSelectedMarkerDetails() {
+    const markerId = document.getElementById('detailsMarkerSelect')?.value;
+    if (markerId) {
+        showMarkerDetails(parseInt(markerId));
+    }
+}
+
+// Show all markers in a browseable modal
 function showAllMarkersModal() {
     const allMarkers = Array.from(markers.values());
 
     if (allMarkers.length === 0) {
-        showStatus('No markers available', 'info');
+        alert('No markers available');
         return;
     }
 
@@ -785,32 +823,10 @@ function closeAllMarkersModal(event) {
     }
 }
 
-function showStatus(message, type = 'info') {
-    console.log(`Status (${type}):`, message);
-
-    let statusEl = document.getElementById('statusMessage');
-    if (!statusEl) {
-        statusEl = document.createElement('div');
-        statusEl.id = 'statusMessage';
-        statusEl.className = 'status-message';
-        document.body.appendChild(statusEl);
-    }
-
-    statusEl.className = `status-message ${type}`;
-    statusEl.textContent = message;
-    statusEl.style.display = 'block';
-
-    const delay = type === 'error' ? 7000 : 4000;
-    setTimeout(() => {
-        if (statusEl.style.display === 'block') {
-            statusEl.style.display = 'none';
-        }
-    }, delay);
-}
-
-function initializeUserMap(locationCode) {
-    initMap(locationCode);
-}
+// Make functions globally available
+window.showSelectedMarkerDetails = showSelectedMarkerDetails;
+window.showAllMarkersModal = showAllMarkersModal;
+window.closeAllMarkersModal = closeAllMarkersModal;
 
 // Make functions globally available
 window.showMarkerDetails = showMarkerDetails;

@@ -425,3 +425,106 @@ body {
         margin-bottom: 0;
     }
 }
+
+/* Marker Cards Grid */
+.markers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 15px;
+    padding: 10px 0;
+}
+
+.marker-card {
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    padding: 15px;
+    background: #f8f9fa;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.marker-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.marker-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.marker-card-header h4 {
+    margin: 0;
+    font-size: 16px;
+    color: #333;
+}
+
+.marker-card-image {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.marker-card-image img {
+    max-width: 100%;
+    max-height: 120px;
+    border-radius: 6px;
+    object-fit: cover;
+}
+
+.marker-card-content p {
+    font-size: 13px;
+    line-height: 1.4;
+    margin-bottom: 8px;
+    color: #666;
+}
+
+.marker-card-content small {
+    color: #999;
+    font-size: 11px;
+}
+
+.marker-card-actions {
+    display: flex;
+    gap: 5px;
+    margin-top: 10px;
+}
+
+.btn-sm {
+    padding: 4px 8px;
+    font-size: 11px;
+}
+
+/* Status message improvements */
+.status-message {
+    position: fixed;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #333;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 6px;
+    display: none;
+    z-index: 2000;
+    font-size: 14px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+    .markers-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .marker-card-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .marker-card-actions {
+        flex-wrap: wrap;
+    }
+}

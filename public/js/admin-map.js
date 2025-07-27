@@ -1233,6 +1233,79 @@ function initializeAdminMap(locationCode) {
     initMap(locationCode);
 }
 
+// Show all marker details in a list
+function showAllMarkerDetails() {
+    const markerHops = Array.from(hops.values()).filter(hop => hop.hopData.type === 'marker');
+
+    if (markerHops.length === 0) {
+        showStatus('No markers found', 'info');
+        return;
+    }
+
+    let modalHTML = `
+        <div id="allMarkersModal" class="marker-modal" onclick="closeAllMarkersModal(event)">
+            <div class="modal-content" onclick="event.stopPropagation()" style="max-width: 700px;">
+                <div class="modal-header">
+                    <h3>All Markers (${markerHops.length})</h3>
+                    <button class="modal-close" onclick="closeAllMarkersModal()">&times;</button>
+                </div>
+                <div class="modal-body" style="max-height: 60vh; overflow-y: auto;">
+                    <div class="markers-grid">
+    `;
+
+    markerHops.forEach(hop => {
+        const data = hop.hopData;
+        modalHTML += `
+            <div class="marker-card">
+                <div class="marker-card-header">
+                    <h4>${data.name}</h4>
+                    <button class="btn btn-sm" onclick="navigateToMarker(${data.id}); closeAllMarkersModal();">🎯 Go To</button>
+                </div>
+                ${data.image_path ?
+                    `<div class="marker-card-image">
+                        <img src="/storage/${data.image_path}" alt="${data.name}">
+                    </div>` : ''
+                }
+                <div class="marker-card-content">
+                    ${data.description ? `<p>${data.description}</p>` : '<p><em>No description available</em></p>'}
+                    <small>📍 ${data.latitude.toFixed(6)}, ${data.longitude.toFixed(6)}</small>
+                </div>
+                <div class="marker-card-actions">
+                    <button class="btn btn-info btn-sm" onclick="showMarkerDetails(${data.id}); closeAllMarkersModal();">👁️ Details</button>
+                    <button class="btn btn-danger btn-sm" onclick="removeHop(${data.id}); closeAllMarkersModal();">🗑️ Remove</button>
+                </div>
+            </div>
+        `;
+    });
+
+    modalHTML += `
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn" onclick="closeAllMarkersModal()">Close</button>
+                </div>
+            </div>
+        </div>
+    `;
+
+    document.body.insertAdjacentHTML('beforeend', modalHTML);
+    setTimeout(() => document.getElementById('allMarkersModal').classList.add('show'), 10);
+}
+
+function closeAllMarkersModal(event) {
+    if (event && event.target.classList.contains('modal-content')) return;
+
+    const modal = document.getElementById('allMarkersModal');
+    if (modal) {
+        modal.classList.remove('show');
+        setTimeout(() => modal.remove(), 300);
+    }
+}
+
+// Make functions globally available
+window.showAllMarkerDetails = showAllMarkerDetails;
+window.closeAllMarkersModal = closeAllMarkersModal;
+
 // Make functions globally available
 window.showMarkerDetails = showMarkerDetails;
 window.closeMarkerModal = closeMarkerModal;

@@ -9,8 +9,14 @@ class Overlay extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'image_path', 'corners', 'opacity', 'active'];
+    // Add to fillable array
+    protected $fillable = ['name', 'image_path', 'corners', 'opacity', 'active', 'location_code'];
 
+    // Add relationship
+    public function location()
+    {
+        return $this->belongsTo(Location::class, 'location_code', 'code');
+    }
     protected $casts = [
         'corners' => 'array',
         'opacity' => 'float',
